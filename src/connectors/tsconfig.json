@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["**/*.js", "**/*.ts"]
+}

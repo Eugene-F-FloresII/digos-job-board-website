@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-workspace-50 text-workspace-900 font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .workspace-pane {
+    @apply bg-white border-r border-workspace-200 h-[calc(100vh-64px)] overflow-y-auto;
+  }
+  .workspace-card {
+    @apply p-4 border-b border-workspace-100 hover:bg-workspace-50 cursor-pointer transition-colors;
+  }
+  .workspace-card-active {
+    @apply p-4 border-b border-workspace-100 bg-brand-50 border-l-4 border-l-brand-500 cursor-pointer;
+  }
+}
