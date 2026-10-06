@@ -1,3 +1,7 @@
+"use client";
+
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Search, MapPin, Briefcase, Clock, ShieldCheck, BusFront, FileText, Send, Building2 } from 'lucide-react';
@@ -11,8 +15,10 @@ const JOBS = [
   { id: 4, title: 'Delivery Rider', company: 'QuickDeliver', salary: '₱12k + tips', location: 'Cogon', commute: 'Has own motorcycle', verified: false, type: 'Contract', posted: '2d ago' },
 ];
 
-export default function JobsSplitPane({ searchParams }: { searchParams: { jobId?: string } }) {
-  const activeJobId = searchParams.jobId ? parseInt(searchParams.jobId) : JOBS[0].id;
+function JobContent() {
+  const searchParams = useSearchParams();
+  const jobIdParam = searchParams.get('jobId');
+  const activeJobId = jobIdParam ? parseInt(jobIdParam) : JOBS[0].id;
   const activeJob = JOBS.find(j => j.id === activeJobId) || JOBS[0];
 
   return (
@@ -128,5 +134,13 @@ export default function JobsSplitPane({ searchParams }: { searchParams: { jobId?
       </div>
 
     </div>
+  );
+}
+
+export default function JobsSplitPane() {
+  return (
+    <Suspense fallback={<div className="p-8">Loading jobs...</div>}>
+      <JobContent />
+    </Suspense>
   );
 }
