@@ -7,19 +7,20 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', ...props }, ref) => {
+  ({ className, variant = 'primary', size = 'md', type = 'button', ...props }, ref) => {
     return (
       <button
         ref={ref}
+        type={type}
         className={cn(
-          'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2',
+          'inline-flex min-h-11 items-center justify-center gap-2 rounded-control font-medium transition duration-150 ease-standard active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:pointer-events-none disabled:opacity-40',
           {
-            'bg-brand-600 text-white hover:bg-brand-900': variant === 'primary',
-            'border border-workspace-300 bg-white text-workspace-800 hover:bg-workspace-50': variant === 'outline',
-            'bg-transparent text-workspace-600 hover:bg-workspace-100 hover:text-workspace-900': variant === 'ghost',
-            'px-3 py-1.5 text-sm': size === 'sm',
-            'px-4 py-2 text-sm': size === 'md',
-            'px-6 py-3 text-base': size === 'lg',
+            'bg-ink text-canvas hover:bg-body-strong': variant === 'primary',
+            'border border-hairline bg-transparent text-ink hover:bg-surface': variant === 'outline',
+            'bg-transparent text-body hover:text-ink': variant === 'ghost',
+            'px-3 text-sm': size === 'sm',
+            'px-4 text-sm': size === 'md',
+            'min-h-12 px-5 text-base': size === 'lg',
           },
           className
         )}

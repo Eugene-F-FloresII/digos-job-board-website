@@ -2,20 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+  --djb-canvas: #2b2622;
+  --djb-surface: #383330;
+  --djb-ink: #f7f5f0;
+  --djb-body: #c9c0ad;
+  --djb-body-strong: #dad2c1;
+  --djb-muted: #aea69c;
+  --djb-hairline: #3f3a36;
+  --djb-motion-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
 @layer base {
+  * {
+    border-color: var(--djb-hairline);
+  }
+
+  html {
+    background: var(--djb-canvas);
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-workspace-50 text-workspace-900 font-sans antialiased;
+    @apply min-h-screen font-sans antialiased;
+    background-color: var(--djb-canvas);
+    color: var(--djb-body);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    color: var(--djb-canvas);
+    background: var(--djb-ink);
   }
 }
 
-@layer utilities {
-  .workspace-pane {
-    @apply bg-white border-r border-workspace-200 h-[calc(100vh-64px)] overflow-y-auto;
+@layer components {
+  .djb-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-  .workspace-card {
-    @apply p-4 border-b border-workspace-100 hover:bg-workspace-50 cursor-pointer transition-colors;
+
+  .djb-field {
+    @apply min-h-11 w-full rounded-control border border-hairline px-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
+    background-color: var(--djb-canvas);
+    color: var(--djb-ink);
   }
-  .workspace-card-active {
-    @apply p-4 border-b border-workspace-100 bg-brand-50 border-l-4 border-l-brand-500 cursor-pointer;
+
+  .djb-field::placeholder {
+    color: var(--djb-muted);
+  }
+
+  .djb-label {
+    @apply mb-1.5 block text-sm font-medium text-body-strong;
+  }
+
+  .djb-divider {
+    border-color: var(--djb-hairline);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

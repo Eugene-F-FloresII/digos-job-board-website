@@ -1,33 +1,39 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        workspace: {
-          50: '#f9fafb',
-          100: '#f3f4f6',
-          200: '#e5e7eb',
-          300: '#d1d5db',
-          800: '#1f2937',
-          900: '#111827',
-        },
-        brand: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          900: '#1e3a8a',
-        }
+        canvas: '#2b2622',
+        surface: '#383330',
+        ink: '#f7f5f0',
+        primary: '#f7f5f0',
+        'on-primary': '#2b2622',
+        body: '#c9c0ad',
+        'body-strong': '#dad2c1',
+        muted: '#aea69c',
+        hairline: '#3f3a36',
       },
       fontFamily: {
-        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-dm-mono)', 'DM Mono', 'monospace'],
+      },
+      borderRadius: {
+        control: '3px',
+        surface: '4px',
+        tile: '6px',
+        pill: '9999px',
+      },
+      transitionTimingFunction: {
+        standard: 'cubic-bezier(0.2, 0, 0, 1)',
       },
     },
   },
   plugins: [],
 };
+
 export default config;

@@ -1,39 +1,58 @@
-import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
-import { ArrowRight, Search, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
+import { JobSearchForm } from '@/components/jobs/JobSearchForm';
+import { JobSummaryRow } from '@/components/jobs/JobSummaryRow';
+import { JOBS } from '@/lib/jobs';
 
 export default function HomePage() {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center p-8 bg-workspace-50">
-      <div className="max-w-2xl w-full text-center space-y-8">
-        <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-workspace-900">
-          Work at the speed of thought.
-        </h1>
-        <p className="text-xl text-workspace-600 max-w-xl mx-auto">
-          The high-performance job directory for Digos City. No bloated pages, no spam—just instant access to verified local opportunities.
+    <div className="djb-container pb-12 pt-8 sm:pb-16 sm:pt-12">
+      <section aria-labelledby="home-title" className="grid gap-5 border-b border-hairline pb-8 sm:grid-cols-[minmax(0,1.35fr)_minmax(240px,.65fr)] sm:items-end sm:pb-10">
+        <div>
+          <h1 id="home-title" className="mb-3 max-w-3xl text-[clamp(2.2rem,5vw,3.5rem)] font-normal leading-[1.08] tracking-[-0.045em] text-ink">
+            Find work that fits your day in Digos.
+          </h1>
+          <p className="mb-0 max-w-2xl text-base leading-7 text-body-strong sm:text-lg">
+            Search by role and barangay. Compare pay, location, and how to get there before you apply.
+          </p>
+        </div>
+        <p className="mb-1 flex items-start gap-3 border-l border-hairline pl-4 text-sm leading-6 text-body sm:justify-self-end">
+          <MapPin aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-ink" />
+          <span><strong className="block font-medium text-ink">Local job listings</strong>Digos City, Davao del Sur</span>
         </p>
-        
-        <div className="bg-white p-2 rounded-xl shadow-sm border border-workspace-200 flex flex-col md:flex-row gap-2 max-w-xl mx-auto mt-8">
-          <div className="flex-1 flex items-center px-4 bg-workspace-50 rounded-lg border border-workspace-100">
-            <Search className="w-5 h-5 text-workspace-400 mr-2" />
-            <input type="text" placeholder="Role or keyword" className="bg-transparent h-12 w-full outline-none text-sm font-medium" />
+      </section>
+
+      <section aria-label="Search local jobs" className="py-6 sm:py-7">
+        <JobSearchForm compact />
+      </section>
+
+      <section aria-labelledby="open-jobs-title" className="mt-1">
+        <div className="flex flex-wrap items-end justify-between gap-3 border-b border-hairline pb-4">
+          <div>
+            <h2 id="open-jobs-title" className="mb-1 text-xl font-medium tracking-tight text-ink">Jobs open in Digos City</h2>
+            <p className="mb-0 text-sm text-body">Pay, place, and commute details shown where provided.</p>
           </div>
-          <Link href="/jobs" className="w-full md:w-auto">
-            <Button size="lg" className="w-full">Search Jobs</Button>
-          </Link>
+          <span className="font-mono text-xs text-muted">{JOBS.length} sample opportunities</span>
         </div>
 
-        <div className="pt-12 flex items-center justify-center gap-8 text-sm font-medium text-workspace-500">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-            100% Verified Employers
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-brand-500"></div>
-            Zero Page Reloads
-          </div>
+        <div className="hidden grid-cols-[1.25fr_.8fr_.8fr_1.15fr_auto] gap-4 py-3 text-xs font-medium text-muted sm:grid" aria-hidden="true">
+          <span>Role and employer</span><span>Pay and period</span><span>Area</span><span>Getting there</span><span className="sr-only">Details</span>
         </div>
-      </div>
+        <div>
+          {JOBS.map((job) => <JobSummaryRow key={job.id} job={job} />)}
+        </div>
+
+        <div className="mt-6 max-w-3xl border-l border-hairline pl-4 text-sm leading-6 text-body">
+          <p className="mb-1 font-medium text-body-strong">Employer document review</p>
+          <p className="mb-0">“Documents reviewed” means the employer’s submitted business documents were checked by the platform. Jobs without this label remain available to browse.</p>
+        </div>
+      </section>
+
+      <footer className="mt-9 flex flex-wrap gap-x-6 gap-y-3 border-t border-hairline pt-5 text-sm text-body">
+        <span className="mr-auto text-muted">DigosJobs · Local openings for Digos City</span>
+        <Link href="/applicant" className="inline-flex min-h-11 items-center gap-1 underline decoration-hairline underline-offset-4 hover:text-ink">Already applied? View applications <ArrowRight aria-hidden="true" size={15} /></Link>
+        <Link href="/employer" className="inline-flex min-h-11 items-center gap-1 underline decoration-hairline underline-offset-4 hover:text-ink">Posting a job? Employer portal <ArrowRight aria-hidden="true" size={15} /></Link>
+      </footer>
     </div>
   );
 }
