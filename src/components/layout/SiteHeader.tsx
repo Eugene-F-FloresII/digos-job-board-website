@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { withBasePath } from '@/lib/paths';
 
 const NAV_ITEMS = [
   { href: '/jobs', label: 'Find jobs', match: (path: string) => path.startsWith('/jobs') },
@@ -18,7 +19,7 @@ export function SiteHeader() {
       <div className="djb-container flex min-h-[76px] flex-wrap items-center justify-between gap-x-6 max-md:gap-y-0 max-md:py-1">
         <Link href="/" className="inline-flex min-h-11 shrink-0 items-center" aria-label="DigosJobs home">
           <Image
-            src="/images/digosjobs-logo.png"
+            src={withBasePath('/images/digosjobs-logo.png')}
             alt="DigosJobs — Opportunities for everyone"
             width={672}
             height={224}

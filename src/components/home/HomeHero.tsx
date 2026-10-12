@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import { JobSearchForm } from '@/components/jobs/JobSearchForm';
+import { withBasePath } from '@/lib/paths';
 
 export function HomeHero() {
   return (
     <section aria-labelledby="hero-title" className="relative isolate font-nunito">
       <div className="relative h-[500px] overflow-hidden sm:h-[535px]">
         <Image
-          src="/images/digos-festival-scene.svg"
+          src={withBasePath('/images/digos-festival-scene.svg')}
           alt="Illustration of a community festival with dancers, musicians, and festive banners; not a photograph of a real Digos event"
           fill
           priority

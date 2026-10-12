@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { withBasePath } from '@/lib/paths';
 
 export function HomeFooter() {
   return (
     <footer className="border-t-4 border-gold bg-ink text-white">
       <div className="djb-container grid gap-8 py-9 sm:py-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:py-12">
         <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-5">
-          <Image src="/images/digosjobs-logo.png" alt="DigosJobs" width={672} height={224} className="h-auto w-[148px] rounded-md bg-white px-2 py-1 sm:w-[164px]" />
+          <Image src={withBasePath('/images/digosjobs-logo.png')} alt="DigosJobs" width={672} height={224} className="h-auto w-[148px] rounded-md bg-white px-2 py-1 sm:w-[164px]" />
           <div className="border-l-2 border-gold pl-4">
             <p className="mb-1 text-base font-extrabold tracking-[-0.02em] text-white sm:text-lg">DigosJobs · Local openings for Digos City</p>
             <p className="mb-0 text-sm text-white/75">Opportunities for everyone, close to home.</p>
