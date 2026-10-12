@@ -3,6 +3,7 @@ interface JobSearchFormProps {
     area?: string;
     action?: string;
     compact?: boolean;
+    homeHero?: boolean;
 }
-export declare function JobSearchForm({ query, area, action, compact }: JobSearchFormProps): import("react").JSX.Element;
+export declare function JobSearchForm({ query, area, action, compact, homeHero }: JobSearchFormProps): import("react").JSX.Element;
 export {};

@@ -3,14 +3,21 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  --djb-canvas: #2b2622;
-  --djb-surface: #383330;
-  --djb-ink: #f7f5f0;
-  --djb-body: #c9c0ad;
-  --djb-body-strong: #dad2c1;
-  --djb-muted: #aea69c;
-  --djb-hairline: #3f3a36;
+  color-scheme: light;
+  --djb-canvas: #f5f7f3;
+  --djb-surface: #ffffff;
+  --djb-ink: #10223f;
+  --djb-body: #465365;
+  --djb-body-strong: #304158;
+  --djb-muted: #6b7888;
+  --djb-hairline: #dce4de;
+  --djb-green: #2f6849;
+  --djb-green-soft: #e8f1eb;
+  --djb-gold: #e3b64f;
+  --djb-gold-soft: #fbf4df;
+  --djb-gold-border: #ead9a8;
+  --djb-gold-ink: #61470d;
+  --djb-info-soft: #edf1f6;
   --djb-motion-standard: cubic-bezier(0.2, 0, 0, 1);
 }
 
@@ -46,8 +53,12 @@
   }
 
   ::selection {
-    color: var(--djb-canvas);
-    background: var(--djb-ink);
+    color: #ffffff;
+    background: var(--djb-green);
+  }
+
+  :focus-visible {
+    outline-color: var(--djb-green);
   }
 }
 
@@ -57,13 +68,7 @@
   }
 
   .djb-field {
-    @apply min-h-11 w-full rounded-control border border-hairline px-3 text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
-    background-color: var(--djb-canvas);
-    color: var(--djb-ink);
-  }
-
-  .djb-field::placeholder {
-    color: var(--djb-muted);
+    @apply min-h-11 w-full rounded-control border border-hairline bg-surface px-3 text-sm text-ink transition-colors duration-150 ease-standard placeholder:text-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green;
   }
 
   .djb-label {
